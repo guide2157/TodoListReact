@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {fetchTodos} from '../../actions';
+import {fetchTodos, deleteTodo} from '../../actions';
 
 class TodoList extends React.Component {
     componentDidMount() {
@@ -21,11 +21,13 @@ class TodoList extends React.Component {
                 <div className="item" key={todo.id}>
                     <i className="sticky note outline icon"/>
                     <div className="content">
-                        <Link to={`/todo/${todo.id}`} className="header">
+                        <Link to={`/todo/detail/${todo.id}`} className="header">
                             {todo.title}
                         </Link>
                         <div className="description">{this.renderTime(todo)}</div>
+
                     </div>
+                    <i className="trash alternate outline icon" onClick={this.props.deleteTodo(todo.id)}/>
                 </div>
             )
         })
@@ -46,11 +48,8 @@ class TodoList extends React.Component {
     render() {
         return (
             <div>
-                <div className="ui massive label" style={{margin: '5%'}}>
-                    My Todo List
-                </div>
             <div className="ui container" style={{width:'70%'}} >
-                <div className="ui relaxed list" style={{'font-size':'14pt'}}>{this.renderList()}</div>
+                <div className="ui relaxed list divided" style={{'fontSize':'14pt'}}>{this.renderList()}</div>
                 {this.renderCreate()}
             </div>
             </div>
@@ -66,4 +65,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, {fetchTodos})(TodoList);
+export default connect(mapStateToProps, {fetchTodos, deleteTodo})(TodoList);

@@ -18,7 +18,6 @@ class Todo(models.Model):
     description = models.TextField()
     completed = models.BooleanField(default=False)
     deadline = models.DateTimeField()
-    owner = models.ForeignKey(Member, related_name="todo", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title

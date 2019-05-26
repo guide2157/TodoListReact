@@ -11,13 +11,16 @@ import history from "../history";
 const App = () => {
         return (
             <div className="ui container">
+                <div className="ui massive label" style={{margin: '5%'}}>
+                    My Todo List
+                </div>
                 <Router history={history}>
                     <div>
                         <Route path="/" exact component={TodoList}/>
-                        <Route path="/todo/:id" exact component={TodoView}/>
                         <Route path="/todo/new" exact component={TodoCreate}/>
+                        <Route path="/todo/detail/:id" exact component={TodoView}/>
                         <Route path="/todo/edit/:id" exact component={TodoEdit}/>
-                        <Route path="/todo/delete/:id" exact component={TodoDelete}/>
+                        {/*<Route path="/todo/delete/:id" exact component={TodoDelete}/>*/}
                     </div>
                 </Router>
             </div>
